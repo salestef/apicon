@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<website_analytics>
+    <header>
+        <Provider>DummyXMLProvider</Provider>
+        <Date>22.10.2021</Date>
+        <Type>analytics</Type>
+    </header>
+    <analytics>
+        <value>542</value>
+    </analytics>    
+	<sessions>
+        <value>215</value>
+    </sessions>
+</website_analytics>
+
+

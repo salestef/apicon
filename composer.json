@@ -1,0 +1,9 @@
+{
+    "name": "aleksandar/api_condor",
+    "autoload": {
+        "psr-4": {
+            "ApiCondor\\": "app/"
+        }
+    },
+    "require": {}
+}
