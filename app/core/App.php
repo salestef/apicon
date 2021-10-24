@@ -1,4 +1,7 @@
 <?php
+namespace ApiCondor\core;
+
+use ApiCondor\core\API;
 
 class App
 {
@@ -18,7 +21,8 @@ class App
 
             if (isset($url[1]) && preg_match('~v[0-9]+~', $url[1], $version) && is_dir('../app/api/' . $url[1])) {
                 $version = $version[0];
-            } else API::error('Please set valid API version', 404);
+//            } else API::error('Please set valid API version',404 );
+            } else API::error(404 );
 
             // Check does controller with this name exists
             if (isset($url[2]) && file_exists('../app/api/' . $version . '/' . $url[2] . '.php')) {
