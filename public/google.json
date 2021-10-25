@@ -1,4 +1,10 @@
 {
-  "analytics": 150,
-  "sessions": 36
+  "users" : 56,
+  "bounce_rate" : 21.5,
+  "sessions" : 63,
+  "average_session_duration" : 46,
+  "percentage_new_sessions" : 54,
+  "pages_per_session" : 7,
+  "goal_completions" : 55,
+  "page_views" : 3194
 }

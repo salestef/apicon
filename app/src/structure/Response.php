@@ -12,6 +12,9 @@ class Response implements \JsonSerializable
     /** @var string|null The Response message. */
     private $message;
 
+    /** @var int|null The Response code. */
+    private $code;
+
     /** @var ResponseProvider[] Get Providers Data. */
     private $data;
 
@@ -19,13 +22,15 @@ class Response implements \JsonSerializable
      * Response constructor.
      * @param null|string $error
      * @param null|string $message
+     * @param $code
      * @param ResponseProvider[] $data
      */
-    public function __construct($error, $message, array $data)
+    public function __construct(array $data = [],$error = false, $message = "", $code = 200)
     {
         $this->error = $error;
         $this->message = $message;
         $this->data = $data;
+        $this->code = $code;
     }
 
     /**
@@ -45,6 +50,14 @@ class Response implements \JsonSerializable
     }
 
     /**
+     * @return int|null
+     */
+    public function getCode(): ?int
+    {
+        return $this->code;
+    }
+
+    /**
      * @return ResponseProvider[]
      */
     public function getData()
@@ -55,11 +68,13 @@ class Response implements \JsonSerializable
     /** @inheritdoc */
     function jsonSerialize()
     {
-        return [
+        $response = [
             'error' => boolval($this->getError()),
-            'message' => strval($this->getMessage()),
-            'data' => $this->getData()
+            'code'  => intval($this->getCode()),
+            'message' => strval($this->getMessage())
         ];
+        if(!$response['error']){ $response['data'] = $this->getData();}
+        return $response;
     }
 
 }

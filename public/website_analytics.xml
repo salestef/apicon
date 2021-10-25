@@ -5,12 +5,14 @@
         <Date>22.10.2021</Date>
         <Type>analytics</Type>
     </header>
-    <analytics>
-        <value>542</value>
-    </analytics>    
-	<sessions>
-        <value>215</value>
-    </sessions>
+    <data>
+        <users>42</users>
+        <bounce_rate>30.4</bounce_rate>
+        <sessions>24</sessions>
+        <average_session_duration>53</average_session_duration>
+        <percentage_new_sessions>17</percentage_new_sessions>
+        <pages_per_session>4</pages_per_session>
+        <goal_completions>68</goal_completions>
+        <page_views>2403</page_views>
+    </data>
 </website_analytics>
-
-

@@ -129,7 +129,6 @@ class ResponseProvider implements \JsonSerializable
         return $this->pageViews;
     }
 
-
     /** @inheritdoc */
     function jsonSerialize()
     {
@@ -138,11 +137,11 @@ class ResponseProvider implements \JsonSerializable
                 "users" => intval($this->getUsers()),
                 "bounce_rate" => floatval($this->getBounceRate()),
                 "sessions" => intval($this->getSessions()),
-                "average_session_duration" => intval($this->getSessions()),
-                "percentage_new_sessions" => intval($this->getSessions()),
-                "pages_per_session" => intval($this->getSessions()),
-                "goal_completions" => intval($this->getSessions()),
-                "page_views" => intval($this->getSessions())
+                "average_session_duration" => intval($this->getAverageSessionDuration()),
+                "percentage_new_sessions" => intval($this->getPercentageNewSessions()),
+                "pages_per_session" => intval($this->getPagesPerSession()),
+                "goal_completions" => intval($this->getGoalCompletions()),
+                "page_views" => intval($this->getPageViews())
             ]
         ];
     }

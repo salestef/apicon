@@ -1,5 +1,5 @@
 <?php
-use ApiCondor\core\API;
+use ApiCondor\core\AnalyticsAPI;
 use ApiCondor\core\ApiController;
 use ApiCondor\src\implementation\DummyXml\DummyXmlProvider;
 use ApiCondor\src\implementation\GoogleAnalytics\GoogleAnalyticsProvider;
@@ -10,12 +10,12 @@ class Analytics extends ApiController
 {
     public function fetch() :JsonSerializable
     {
-        API::execute(
+        AnalyticsAPI::execute(
             [
                 new GoogleAnalyticsProvider(),
-                new DummyDatabaseProvider(),
-                new OtherDummyDatabaseProvider(),
-                new DummyXmlProvider()
+                new DummyXmlProvider(),
+                new DummyDatabaseProvider(), // init database dummy_database.sql
+                new OtherDummyDatabaseProvider() // init database other_dummy.sql
             ]
         );
     }

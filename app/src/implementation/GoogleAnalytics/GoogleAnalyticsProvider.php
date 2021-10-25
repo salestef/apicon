@@ -28,9 +28,10 @@ class GoogleAnalyticsProvider extends ApiProviderAbstract
      * Logic for fetching data from API.
      *
      *
+     * @param null $params
      * @return mixed
      */
-    public function fetchData()
+    public function fetchData($params = null)
     {
 //        $path = GoogleAnalyticsProvider::END_POINT . $this->apiMethod . $cityKey . '?apikey=' . $this->apiKey . '&language=en-us&details=true&metric=false%20';
         $path = GoogleAnalyticsProvider::END_POINT;
@@ -45,6 +46,9 @@ class GoogleAnalyticsProvider extends ApiProviderAbstract
     public function provide(): ResponseProvider
     {
         $data = $this->fetchData();
-        return new ResponseProvider($this->providerName,$data->analytics, $data->sessions);
+        return new ResponseProvider(
+            $this->providerName, $data->users, $data->bounce_rate, $data->sessions, $data->average_session_duration,
+            $data->percentage_new_sessions, $data->pages_per_session, $data->goal_completions, $data->goal_completions,
+            );
     }
 }

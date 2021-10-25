@@ -20,15 +20,19 @@ class DummyXmlProvider extends XmlProviderAbstract
     /**
      * Logic for fetching data from API.
      *
-     *
+     * @param null $params
      * @return mixed
      */
-    public function fetchData()
+    public function fetchData($params = null)
     {
         // SOAP - Curl TODO
+        $data = new \stdClass();
         $xmlResource = DummyXmlProvider::END_POINT;
         $xml = simplexml_load_file($xmlResource) or die("Error: Cannot create object");
-        return $xml;
+        foreach ((array)$xml->data[0] as $xmlItem => $xmlValue){
+            $data->$xmlItem = $this->handleXmlDataTypes($xmlValue);
+        }
+        return $data;
     }
 
     /**
@@ -39,6 +43,14 @@ class DummyXmlProvider extends XmlProviderAbstract
     public function provide(): ResponseProvider
     {
         $data = $this->fetchData();
-        return new ResponseProvider($this->providerName,$data->analytics->value, $data->sessions->value);
+        return new ResponseProvider(
+            $this->providerName, $data->users, $data->bounce_rate, $data->sessions, $data->average_session_duration,
+            $data->percentage_new_sessions, $data->pages_per_session, $data->goal_completions, $data->goal_completions,
+            );
+    }
+
+    protected function handleXmlDataTypes($item){
+        if(is_numeric($item)) $item = strpos($item, ".") ? floatval($item) : $item = intval($item);
+        return $item;
     }
 }
