@@ -11,7 +11,12 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table dummy_database.analytics
+
+-- Dumping database structure for other_dummy
+CREATE DATABASE IF NOT EXISTS `other_dummy` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
+USE `other_dummy`;
+
+-- Dumping structure for table other_dummy.analytics
 CREATE TABLE IF NOT EXISTS `analytics` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `users` int(11) unsigned DEFAULT NULL,
@@ -25,11 +30,11 @@ CREATE TABLE IF NOT EXISTS `analytics` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table dummy_database.analytics: 1 rows
+-- Dumping data for table other_dummy.analytics: 1 rows
 DELETE FROM `analytics`;
 /*!40000 ALTER TABLE `analytics` DISABLE KEYS */;
 INSERT INTO `analytics` (`id`, `users`, `bounce_rate`, `sessions`, `average_session_duration`, `percentage_new_sessions`, `pages_per_session`, `goal_completions`, `page_views`) VALUES
-	(1, 4001, 41.7, 45, 16, 77, 7, 67, 435);
+	(1, 5200, 41.7, 45, 24, 36, 6, 48, 5320);
 /*!40000 ALTER TABLE `analytics` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

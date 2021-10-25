@@ -5,7 +5,7 @@ use ApiCondor\src\structure\ResponseProvider;
 
 interface ProviderInterface
 {
-    public function fetchData($params = null);
+    public function fetchData();
 
     public function provide() :ResponseProvider;
 

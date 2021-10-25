@@ -2,6 +2,7 @@
 
 namespace ApiCondor\src\implementation\DummyXml;
 
+use ApiCondor\core\API;
 use ApiCondor\src\providers\XmlProviderAbstract;
 use ApiCondor\src\structure\ResponseProvider;
 
@@ -10,7 +11,7 @@ class DummyXmlProvider extends XmlProviderAbstract
     /** @var string $providerName Provider Name. */
     public $providerName = "DummyXmlProvider";
 
-    const END_POINT = 'http://apicon.local/website_analytics.xml';
+    private $endpoint = PUBLIC_FOLDER . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'website_analytics.xml';
 
     public function __construct(string $type = "", string $header = "", string $body = "", string $userName = "", string $password = "", string $licenceId = "")
     {
@@ -20,19 +21,18 @@ class DummyXmlProvider extends XmlProviderAbstract
     /**
      * Logic for fetching data from API.
      *
-     * @param null $params
      * @return mixed
      */
-    public function fetchData($params = null)
+    public function fetchData()
     {
-        // SOAP - Curl TODO
-        $data = new \stdClass();
-        $xmlResource = DummyXmlProvider::END_POINT;
-        $xml = simplexml_load_file($xmlResource) or die("Error: Cannot create object");
-        foreach ((array)$xml->data[0] as $xmlItem => $xmlValue){
-            $data->$xmlItem = $this->handleXmlDataTypes($xmlValue);
-        }
-        return $data;
+            // TODO SOAP request, Handle params, Authentication etc...
+            $data = new \stdClass();
+            $xmlResource = $this->endpoint;
+            $xml = @simplexml_load_file($xmlResource) or API::error();
+            foreach ((array)$xml->data[0] as $xmlItem => $xmlValue) {
+                $data->$xmlItem = $this->handleXmlDataTypes($xmlValue);
+            }
+            return $data;
     }
 
     /**
@@ -49,8 +49,4 @@ class DummyXmlProvider extends XmlProviderAbstract
             );
     }
 
-    protected function handleXmlDataTypes($item){
-        if(is_numeric($item)) $item = strpos($item, ".") ? floatval($item) : $item = intval($item);
-        return $item;
-    }
 }

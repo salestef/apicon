@@ -10,7 +10,7 @@ class GoogleAnalyticsProvider extends ApiProviderAbstract
     /** @var string $providerName Provider Name. */
     public $providerName = "GoogleAnalyticsProvider";
 
-    const END_POINT = 'http://apicon.local/google.json';
+    private $endpoint = PUBLIC_FOLDER . DIRECTORY_SEPARATOR .'resources' . DIRECTORY_SEPARATOR . 'google.json';
 
     /**
      * GoogleAnalyticsProvider constructor.
@@ -18,7 +18,6 @@ class GoogleAnalyticsProvider extends ApiProviderAbstract
      * @param string $type
      * @param string $apiMethod
      */
-//    public function __construct($apiKey = "PVxqWUCWI2cVQlD3ZLoL3hxMTDC0L786",$type = "analytics", $apiMethod = "http://google.com")
     public function __construct($apiKey = "", $type = "", $apiMethod = "")
     {
         parent::__construct($apiKey, $type, $apiMethod);
@@ -27,14 +26,14 @@ class GoogleAnalyticsProvider extends ApiProviderAbstract
     /**
      * Logic for fetching data from API.
      *
-     *
-     * @param null $params
      * @return mixed
      */
-    public function fetchData($params = null)
+    public function fetchData()
     {
-//        $path = GoogleAnalyticsProvider::END_POINT . $this->apiMethod . $cityKey . '?apikey=' . $this->apiKey . '&language=en-us&details=true&metric=false%20';
-        $path = GoogleAnalyticsProvider::END_POINT;
+        // TODO Build URI and add PARAMS, METHODS, API TOKEN etc...
+        // TODO Handle POST, GET requests using curl
+        // TODO Authentication
+        $path = $this->endpoint;
         return json_decode(file_get_contents($path, true));
     }
 
@@ -49,6 +48,6 @@ class GoogleAnalyticsProvider extends ApiProviderAbstract
         return new ResponseProvider(
             $this->providerName, $data->users, $data->bounce_rate, $data->sessions, $data->average_session_duration,
             $data->percentage_new_sessions, $data->pages_per_session, $data->goal_completions, $data->goal_completions,
-        );
+            );
     }
 }

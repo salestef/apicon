@@ -23,12 +23,11 @@ class DummyDatabaseProvider extends DBProviderAbstract
     /**
      * Logic for fetching data from DB.
      *
-     *
-     * @param null $params
      * @return mixed
      */
-    public function fetchData($params = null)
+    public function fetchData()
     {
+        // TODO Handle params like WHERE for date filter etc...
         $connection = $this->db->connect();
         $sql = "SELECT MAX(`users`) AS `users`, MAX(`bounce_rate`) AS `bounce_rate`, MAX(`sessions`) AS `sessions`, 
 MAX(`average_session_duration`) AS `average_session_duration`, MAX(`percentage_new_sessions`) AS `percentage_new_sessions`,
@@ -49,6 +48,6 @@ MAX(`average_session_duration`) AS `average_session_duration`, MAX(`percentage_n
         return new ResponseProvider(
             $this->providerName, $data->users, $data->bounce_rate, $data->sessions, $data->average_session_duration,
             $data->percentage_new_sessions, $data->pages_per_session, $data->goal_completions, $data->goal_completions,
-        );
+            );
     }
 }

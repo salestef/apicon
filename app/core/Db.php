@@ -52,7 +52,6 @@ class Db
 
     }
 
-
     /**
      * @return PDO Database connection.
      */

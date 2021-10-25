@@ -11,24 +11,27 @@ abstract class DBProviderAbstract implements ProviderInterface
      */
     protected $db;
 
+    /** @var array */
+    protected $params;
+
     /**
      * DBProviderAbstract constructor.
      *
      * @param Db $db
+     * @param array $params
      */
-    public function __construct($db)
+    public function __construct($db,$params = [])
     {
         $this->db = $db;
+        $this->params = $params;
     }
 
     /**
      * Logic for fetching data from Database.
      *
-     *
-     * @param null $params
      * @return mixed
      */
-    abstract public function fetchData($params = null);
+    abstract public function fetchData();
 
     /**
      * Providing analytics for client's website.

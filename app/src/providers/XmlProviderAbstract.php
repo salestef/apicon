@@ -23,6 +23,9 @@ abstract class XmlProviderAbstract implements ProviderInterface
     /** @var  string Authentication licence ID. */
     protected $licenceId;
 
+    /** @var array */
+    protected $params;
+
     /**
      * All Data needed for SOAP request.
      * XmlProviderAbstract constructor.
@@ -33,7 +36,7 @@ abstract class XmlProviderAbstract implements ProviderInterface
      * @param string $password
      * @param string $licenceId
      */
-    public function __construct(string $type = "", string $header = "", string $body = "", string $userName = "", string $password = "", string $licenceId = "")
+    public function __construct(string $type = "", string $header = "", string $body = "", string $userName = "", string $password = "", string $licenceId = "", $params = [])
     {
         $this->type = $type;
         $this->header = $header;
@@ -41,16 +44,15 @@ abstract class XmlProviderAbstract implements ProviderInterface
         $this->userName = $userName;
         $this->password = $password;
         $this->licenceId = $licenceId;
+        $this->params = $params;
     }
 
     /**
      * Logic for fetching data from XML resource.
      *
-     *
-     * @param null $params
      * @return mixed
      */
-    abstract public function fetchData($params = null);
+    abstract public function fetchData();
 
     /**
      * Providing analytics for client's website.
@@ -59,4 +61,14 @@ abstract class XmlProviderAbstract implements ProviderInterface
      */
     abstract public function provide() :ResponseProvider;
 
+    /**
+     * Handle XML numeric string data types.
+     * @param $item
+     * @return float|int
+     */
+    protected function handleXmlDataTypes($item)
+    {
+        if (is_numeric($item)) $item = strpos($item, ".") ? floatval($item) : $item = intval($item);
+        return $item;
+    }
 }

@@ -14,8 +14,8 @@ class Analytics extends ApiController
             [
                 new GoogleAnalyticsProvider(),
                 new DummyXmlProvider(),
-                new DummyDatabaseProvider(), // init database dummy_database.sql
-                new OtherDummyDatabaseProvider() // init database other_dummy.sql
+//                new DummyDatabaseProvider(), // TODO for this provider init database `dummy_database.sql` located in public/resources dir.
+//                new OtherDummyDatabaseProvider() // TODO for this provider init database `other_dummy.sql` located in public/resources dir.
             ]
         );
     }
