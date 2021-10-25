@@ -17,7 +17,7 @@ class DummyDatabaseProvider extends DBProviderAbstract
      */
     public function __construct()
     {
-        parent::__construct(new Db('mysql', '127.0.0.1', 'api_condor', 'utf8', 'root', ''));
+        parent::__construct(new Db('mysql', '127.0.0.1', 'dummy_database', 'utf8', 'root', ''));
     }
 
     /**

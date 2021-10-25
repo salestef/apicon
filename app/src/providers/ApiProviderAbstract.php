@@ -32,9 +32,10 @@ abstract class ApiProviderAbstract implements ProviderInterface
      * Logic for fetching data from API.
      *
      *
+     * @param null $params
      * @return mixed
      */
-    abstract public function fetchData();
+    abstract public function fetchData($params = null);
 
     /**
      * Providing analytics for client's website.

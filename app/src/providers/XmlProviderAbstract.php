@@ -5,22 +5,22 @@ use ApiCondor\src\structure\ResponseProvider;
 
 abstract class XmlProviderAbstract implements ProviderInterface
 {
-    /** @var  string Type or key for GET params forwarded to api. */
+    /** @var  string Type or method we want to fetch. */
     protected $type;
 
-    /** @var  string Type or key for GET params forwarded to api. */
+    /** @var  string Header of xml request. */
     protected $header;
 
-    /** @var  string Type or key for GET params forwarded to api. */
+    /** @var  string Body of xml request. */
     protected $body;
 
-    /** @var  string Type or key for GET params forwarded to api. */
+    /** @var  string Authentication credentials username. */
     protected $userName;
 
-    /** @var  string Type or key for GET params forwarded to api. */
+    /** @var  string Authentication credentials password. */
     protected $password;
 
-    /** @var  string Type or key for GET params forwarded to api. */
+    /** @var  string Authentication licence ID. */
     protected $licenceId;
 
     /**
@@ -43,14 +43,14 @@ abstract class XmlProviderAbstract implements ProviderInterface
         $this->licenceId = $licenceId;
     }
 
-
     /**
-     * Logic for fetching data from API.
+     * Logic for fetching data from XML resource.
      *
      *
+     * @param null $params
      * @return mixed
      */
-    abstract public function fetchData();
+    abstract public function fetchData($params = null);
 
     /**
      * Providing analytics for client's website.
