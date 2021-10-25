@@ -4,16 +4,15 @@ namespace ApiCondor\core;
 
 use ApiCondor\src\providers\ProviderInterface;
 use ApiCondor\src\structure\Response;
+use JsonSerializable;
 
 
 abstract class API
 {
-
-
     /**
      * Send the response.
      *
-     * @param \JsonSerializable $response
+     * @param JsonSerializable $response
      * @param int $code The HTTP code to send.
      *
      */
@@ -21,24 +20,14 @@ abstract class API
     {
         // Response as JSON
         $response = json_encode($response);
-        echo $response;
-
-        // Include time required to generate in HTTP header
-        if (defined('START_TIME')) {
-            header('X-Generated: ' . round(microtime(true) - START_TIME, 3) * 1000);
-        }
 
         // Send response headers
-        if (!ob_get_contents() && !headers_sent()) {
-            http_response_code($code >= 100 && $code < 600 ? $code : 500);
-            header('Cache-Control: no-cache');
-            header('Content-Type: application/json');
-            header('Content-Length: ' . strlen($response));
+        http_response_code($code >= 100 && $code < 600 ? $code : 500);
+        header('Cache-Control: no-cache');
+        header('Content-Type: application/json');
+        header('Content-Length: ' . strlen($response));
 
-            echo $response;
-
-        }
-
+        echo $response;
         // End
         exit(0);
     }
@@ -49,11 +38,10 @@ abstract class API
      * @param $errorMessage
      * @param int $errorCode The HTTP error code to set.
      */
-    public static function error($errorMessage, $errorCode = 500)
+    public static function error($errorMessage = "Internal server error", $errorCode = 500)
     {
         self::respond(new Response([], true, $errorMessage, $errorCode,));
     }
-
 
 
 }

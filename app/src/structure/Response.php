@@ -20,7 +20,7 @@ class Response implements \JsonSerializable
 
     /**
      * Response constructor.
-     * @param null|string $error
+     * @param bool $error
      * @param null|string $message
      * @param $code
      * @param ResponseProvider[] $data

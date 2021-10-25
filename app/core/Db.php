@@ -62,7 +62,7 @@ class Db
             try {
                 $this->connection = new PDO($this->type . ':host=' . $this->host . ';dbname=' . $this->name . ';charset=' . $this->charset, $this->user, $this->password);
             } catch (PDOException $e) {
-                API::error(($e->getCode()));
+                API::error();
             }
         }
         return $this->connection;

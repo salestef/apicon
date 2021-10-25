@@ -49,6 +49,6 @@ class GoogleAnalyticsProvider extends ApiProviderAbstract
         return new ResponseProvider(
             $this->providerName, $data->users, $data->bounce_rate, $data->sessions, $data->average_session_duration,
             $data->percentage_new_sessions, $data->pages_per_session, $data->goal_completions, $data->goal_completions,
-            );
+        );
     }
 }
